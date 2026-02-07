@@ -1,0 +1,102 @@
+.passions {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.inner {
+  position: relative;
+}
+
+.header {
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--white);
+}
+
+.titleOutline {
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  color: transparent;
+  -webkit-text-stroke: 2px var(--mid);
+  margin-top: -0.3rem;
+  margin-left: 3rem;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.item {
+  border: 1px solid var(--mid);
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.item:hover {
+  border-color: var(--grey);
+  transform: translateY(-3px);
+}
+
+.itemShift {
+  margin-top: 3rem;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--mid);
+}
+
+.image span {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--grey);
+}
+
+.info {
+  padding: 1.25rem;
+}
+
+.label {
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: var(--grey);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .itemShift {
+    margin-top: 0;
+  }
+
+  .titleOutline {
+    margin-left: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
