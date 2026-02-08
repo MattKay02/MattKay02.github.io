@@ -1,4 +1,4 @@
-import gymImg from '../assets/passions/Gym_image.JPG'
+import gymImg from '../assets/passions/Gym_image.PNG'
 import golfImg from '../assets/passions/Golf_image.JPG'
 import ps5Img from '../assets/passions/Playstation_image.png'
 import styles from './Passions.module.css'
