@@ -20,13 +20,15 @@
   letter-spacing: 0.05em;
   color: var(--white);
   transition: opacity 0.2s;
+  z-index: 102;
 }
 
 .logo:hover {
   opacity: 0.7;
 }
 
-.links {
+/* ── Desktop links ── */
+.desktopLinks {
   display: flex;
   gap: 2.5rem;
 }
@@ -60,63 +62,142 @@
   width: 100%;
 }
 
-/* Burger menu */
+/* ── Burger button (hidden on desktop) ── */
 .burger {
   display: none;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   padding: 4px;
-  z-index: 101;
+  z-index: 102;
+  cursor: pointer;
 }
 
 .burger span {
   display: block;
-  width: 28px;
+  width: 26px;
   height: 2px;
   background: var(--white);
   transition: transform 0.3s, opacity 0.3s;
+  transform-origin: center;
 }
 
-.burgerOpen span:first-child {
-  transform: translateY(4px) rotate(45deg);
+.burgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
 }
 
-.burgerOpen span:last-child {
-  transform: translateY(-4px) rotate(-45deg);
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
 }
 
-/* Mobile */
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile overlay (backdrop) ── */
+.overlay {
+  display: none;
+}
+
+/* ── Mobile slide-down menu ── */
+.mobileMenu {
+  display: none;
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
   .nav {
     padding: 1rem 1.25rem;
+  }
+
+  .desktopLinks {
+    display: none;
   }
 
   .burger {
     display: flex;
   }
 
-  .links {
+  /* Dark backdrop */
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  .overlayVisible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Menu panel — drops down below the navbar */
+  .mobileMenu {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    z-index: 99;
     background: var(--black);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
+    border-bottom: 2px solid var(--mid);
+    padding: 5.5rem 1.25rem 2rem;
     transform: translateY(-100%);
     visibility: hidden;
-    transition: transform 0.4s, visibility 0.4s;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.35s;
   }
 
-  .linksOpen {
+  .mobileMenuOpen {
     transform: translateY(0);
     visibility: visible;
   }
 
-  .link {
-    font-size: 1.5rem;
+  /* Link list */
+  .mobileLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobileItem {
+    border-bottom: 1px solid var(--mid);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .mobileMenuOpen .mobileItem {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobileLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    color: var(--light);
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .mobileLink:hover,
+  .mobileLink:focus-visible {
+    color: var(--white);
+    padding-left: 1rem;
+  }
+
+  .mobileLinkIndex {
+    font-size: 0.65rem;
+    color: var(--grey);
+    letter-spacing: 0.1em;
+    font-weight: 700;
   }
 }
