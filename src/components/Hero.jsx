@@ -1,4 +1,5 @@
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import headshot from '../assets/hero/Professional_headshot.png'
 import styles from './Hero.module.css'
 
 function Hero() {
@@ -49,7 +50,7 @@ function Hero() {
         <div className={styles.right}>
           <div className={styles.headshotWrap}>
             <div className={styles.headshot}>
-              <span>YOUR HEADSHOT</span>
+              <img src={headshot} alt="Matthew Kay" className={styles.headshotImg} />
             </div>
             <div className={styles.headshotLabel} aria-hidden="true">
               MK.

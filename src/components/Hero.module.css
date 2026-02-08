@@ -109,12 +109,11 @@
   justify-content: center;
 }
 
-.headshot span {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  color: var(--grey);
+.headshotImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .headshotLabel {
