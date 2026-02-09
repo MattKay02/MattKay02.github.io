@@ -19,9 +19,7 @@ function Hero() {
             <span className={styles.nameOffset}>KAY</span>
           </h1>
           <p className={styles.subtitle}>
-            Building modern software with sharp instincts
-            <br />
-            and smarter tools.
+            Building modern software with sharp instincts and smarter tools.
           </p>
 
           <div className={styles.socials}>
