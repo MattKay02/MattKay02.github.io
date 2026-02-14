@@ -1,27 +1,40 @@
+import msaScreenshot from '../assets/projects/MSA-screenshot.png'
+import redCrossScreenshot from '../assets/projects/RedCrossReigate-screenshot.png'
+
 const projects = [
   {
     id: 1,
-    category: 'WEB APP',
-    title: 'Project One',
-    description: 'A full-stack web application built with modern tooling. Replace this with your actual project description.',
+    category: 'Mobile App',
+    title: 'Liftio',
+    description:
+      'Fitness tracking application for iOS and Android with workout logging, progress analytics, and social features.',
     github: 'https://github.com/MattKay02',
-    tech: ['React', 'Node.js', 'MongoDB'],
+    liveUrl: null,
+    image: null,
+    tech: ['React Native', 'Node.js', 'MongoDB'],
+    status: 'In Development',
   },
   {
     id: 2,
-    category: 'TOOL',
-    title: 'Project Two',
-    description: 'A developer tool that streamlines workflow automation. Replace this with your actual project description.',
-    github: 'https://github.com/MattKay02',
-    tech: ['Python', 'REST API', 'Supabase'],
+    category: 'Web',
+    title: 'Matthew Simpson Architecture',
+    description:
+      'Portfolio website for architect Matthew Simpson showcasing architectural projects and practice.',
+    github: 'https://github.com/MattKay02/MSA',
+    liveUrl: 'https://matthewsimpsonarchitecture.vercel.app',
+    image: msaScreenshot,
+    tech: ['React', 'Vite', 'CSS Modules'],
   },
   {
     id: 3,
-    category: 'SITE',
-    title: 'Project Three',
-    description: 'A responsive website with a focus on performance and clean design. Replace this with your actual project description.',
-    github: 'https://github.com/MattKay02',
-    tech: ['Next.js', 'TypeScript', 'Vercel'],
+    category: 'Web',
+    title: 'Red Cross Reigate',
+    description:
+      'Landing page for a traditional local pub in Reigate, Surrey. Featuring drinks menus, events, and essential pub information.',
+    github: 'https://github.com/MattKay02/RedCrossReigate',
+    liveUrl: 'https://red-cross-reigate.vercel.app',
+    image: redCrossScreenshot,
+    tech: ['React', 'Vite', 'CSS Modules'],
   },
 ]
 

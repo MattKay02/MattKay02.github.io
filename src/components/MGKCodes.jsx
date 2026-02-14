@@ -17,14 +17,17 @@ function MGKCodes() {
 
           <div className={styles.right}>
             <p className={styles.text}>
-              Freelance development under the MGKCodes brand. I build
-              websites, web apps, and digital products for clients who want
-              something that works — and works well.
+              MGKCodes is my development studio — I build web and mobile
+              apps for founders and businesses who need something that
+              actually works.
             </p>
             <p className={styles.text}>
-              Clean code, clear communication, delivered on time. Whether it's
-              a landing page or a full-stack build, I approach every project
-              with the same standard.
+              I also build my own products on the side. I care about good
+              code and shipping things people want to use.
+            </p>
+            <p className={styles.text}>
+              Based in London, working with clients everywhere. No fluff,
+              just solid work and straight-up communication.
             </p>
 
             <a

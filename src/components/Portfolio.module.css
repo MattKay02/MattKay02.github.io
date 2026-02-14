@@ -5,7 +5,7 @@
 
 /* Header */
 .header {
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   position: relative;
 }
 
@@ -29,16 +29,60 @@
   margin-top: 2rem;
 }
 
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+/* Filter tabs */
+.filters {
+  display: flex;
+  gap: 0;
+  margin-bottom: 3rem;
+  border: 1px solid var(--mid);
+  width: fit-content;
+}
+
+.filterBtn {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--grey);
+  border: none;
+  border-right: 1px solid var(--mid);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.filterBtn:last-child {
+  border-right: none;
+}
+
+.filterBtn:hover {
+  color: var(--white);
+  background: var(--mid);
+}
+
+.filterActive {
+  color: var(--black);
+  background: var(--white);
+}
+
+.filterActive:hover {
+  color: var(--black);
+  background: var(--white);
+}
+
+/* Stacked cards */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .card {
   background: var(--dark);
   border: 1px solid var(--mid);
+  max-width: 900px;
   transition: border-color 0.3s, transform 0.3s;
 }
 
@@ -47,16 +91,26 @@
   transform: translateY(-4px);
 }
 
-.cardOffset {
-  margin-top: 3rem;
+/* Alternate card offset for brutalist feel */
+.card:nth-child(even) {
+  margin-left: auto;
 }
 
 /* Image area */
 .imageWrap {
   position: relative;
+  overflow: hidden;
 }
 
 .image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--mid);
+}
+
+.imagePlaceholder {
   width: 100%;
   aspect-ratio: 16 / 10;
   background: var(--mid);
@@ -66,7 +120,7 @@
   border-bottom: 1px solid var(--mid);
 }
 
-.image span {
+.imagePlaceholder span {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.7rem;
@@ -74,50 +128,60 @@
   color: var(--grey);
 }
 
+/* Info */
+.info {
+  padding: 2rem;
+}
+
+/* Badges */
+.badges {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
 .category {
-  position: absolute;
-  top: -0.75rem;
-  left: 1rem;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.65rem;
   letter-spacing: 0.2em;
+  text-transform: uppercase;
   background: var(--white);
   color: var(--black);
   padding: 0.3rem 0.8rem;
 }
 
-/* Info */
-.info {
-  padding: 1.5rem;
+.status {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--grey);
+  color: var(--grey);
+  padding: 0.3rem 0.8rem;
 }
 
 .projectTitle {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: var(--white);
   margin-bottom: 0.75rem;
 }
 
 .description {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--grey);
   line-height: 1.7;
   margin-bottom: 1.5rem;
+  max-width: 600px;
 }
 
-/* Meta */
-.meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
+/* Tags */
 .tags {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 
 .tag {
@@ -130,42 +194,75 @@
   color: var(--light);
 }
 
-.github {
+/* Action buttons */
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.actionBtn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--grey);
   border: 1px solid var(--mid);
-  padding: 0.4rem 0.8rem;
-  transition: color 0.2s, border-color 0.2s;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  text-decoration: none;
 }
 
-.github:hover {
-  color: var(--white);
+.actionBtn:hover {
+  color: var(--black);
   border-color: var(--white);
+  background: var(--white);
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .card:nth-child(even) {
+    margin-left: 0;
   }
 
-  .cardOffset {
-    margin-top: 0;
+  .card {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
   .titleOutline {
     margin-left: 1.5rem;
+  }
+
+  .filters {
+    width: 100%;
+  }
+
+  .filterBtn {
+    flex: 1;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.65rem;
+    text-align: center;
+  }
+
+  .projectTitle {
+    font-size: 1.3rem;
+  }
+
+  .info {
+    padding: 1.25rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actionBtn {
+    justify-content: center;
   }
 }
