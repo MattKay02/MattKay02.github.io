@@ -1,6 +1,7 @@
 import msaScreenshot from '../assets/projects/MSA-screenshot.png'
 import redCrossScreenshot from '../assets/projects/RedCrossReigate-screenshot.png'
 import redCrossLong from '../assets/projects/RedCrossReigate-long-screenshot.png'
+import redCrossMobileLong from '../assets/projects/Mobile-RedCrossReigate-long-screenshot.png'
 
 const projects = [
   {
@@ -36,6 +37,7 @@ const projects = [
     liveUrl: 'https://red-cross-reigate.vercel.app',
     image: redCrossScreenshot,
     longImage: redCrossLong,
+    mobileLongImage: redCrossMobileLong,
     tech: ['React', 'Vite', 'CSS Modules'],
   },
 ]

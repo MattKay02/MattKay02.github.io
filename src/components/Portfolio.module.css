@@ -88,6 +88,7 @@
 .cardWrap {
   position: relative;
   overflow: visible;
+  pointer-events: none;
 }
 
 /* Alternate card offset for brutalist feel */
@@ -104,6 +105,7 @@
   transition: border-color 0.3s;
   position: relative;
   z-index: 1;
+  pointer-events: auto;
 }
 
 .card:hover {
@@ -153,12 +155,16 @@
   border-bottom: 1px solid var(--mid);
 }
 
+.longImageContainer {
+  position: relative;
+  border-bottom: 1px solid var(--mid);
+}
+
 .longImageWrap {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow-y: auto;
   overflow-x: hidden;
-  border-bottom: 1px solid var(--mid);
   cursor: ns-resize;
   scrollbar-width: none;
 }
@@ -170,6 +176,99 @@
 .longImage {
   width: 100%;
   display: block;
+}
+
+.longImageWrapMobile {
+  background: var(--dark);
+}
+
+.longImageMobile {
+  width: 45%;
+  display: block;
+  margin: 0 auto;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.6rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--grey);
+  font-size: 14px;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+/* View toggles (desktop/mobile) — anchored to the right of the top-right corner */
+.viewToggles {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  transform: translateX(calc(100% + 0.75rem));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  z-index: 2;
+}
+
+.viewToggleBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  background: var(--dark);
+  border: 1px solid var(--mid);
+  color: var(--grey);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.viewToggleBtn svg {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.viewToggleBtn + .viewToggleBtn {
+  margin-top: -1px;
+}
+
+.viewToggleBtn:hover {
+  color: var(--white);
+  border-color: var(--grey);
+}
+
+.viewToggleActive {
+  color: var(--black);
+  background: var(--white);
+  border-color: var(--white);
+  z-index: 2;
+}
+
+.viewToggleActive:hover {
+  color: var(--black);
+  background: var(--white);
+  border-color: var(--white);
 }
 
 .imagePlaceholder {
@@ -297,6 +396,19 @@
 
   .cardBgText {
     font-size: clamp(3rem, 8vw, 6rem);
+  }
+
+  .viewToggles {
+    top: auto;
+    bottom: calc(100% + 0.5rem);
+    right: 0;
+    transform: none;
+    flex-direction: row;
+  }
+
+  .viewToggleBtn + .viewToggleBtn {
+    margin-top: 0;
+    margin-left: -1px;
   }
 }
 
