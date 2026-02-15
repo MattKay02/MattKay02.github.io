@@ -1,24 +1,26 @@
 import { useEffect, useRef, useState } from 'react'
 
 /**
- * Returns [ref, scale, position] for a single card.
+ * Returns [ref, scale, position, rawPosition] for a single card.
  *
  * - scale: 0 to 1 (minScale when far, 1 when centered)
- * - position: -1 to +1 (negative = card is below center, 0 = centered, positive = above/past)
+ * - position: -1 to +1 (with anchor zone applied — used for card slide/bg text)
+ * - rawPosition: -1 to +1 (smooth, no anchor — used for image scroll)
  *
  * Adjustable:
  * - minScale: smallest scale value (default 0.65)
  * - smoothing: lerp factor, lower = smoother (default 0.04)
  * - anchorZone: portion of viewport center where card stays fully scaled (default 0.3)
- *   e.g. 0.3 = card holds at scale 1 and position 0 for 30% of viewport around center
  */
 export default function useCardScale(minScale = 0.65, smoothing = 0.04, anchorZone = 0.3) {
   const ref = useRef(null)
-  const [values, setValues] = useState({ scale: minScale, position: -1 })
+  const [values, setValues] = useState({ scale: minScale, position: -1, rawPosition: -1 })
   const targetScale = useRef(minScale)
   const targetPos = useRef(-1)
+  const targetRaw = useRef(-1)
   const currentScale = useRef(minScale)
   const currentPos = useRef(-1)
+  const currentRaw = useRef(-1)
   const rafRef = useRef(null)
 
   useEffect(() => {
@@ -32,20 +34,19 @@ export default function useCardScale(minScale = 0.65, smoothing = 0.04, anchorZo
       const viewH = window.innerHeight
       const cardCenter = rect.top + rect.height / 2
       const viewCenter = viewH / 2
-      // Signed: negative = card below center, positive = card above center
       const signed = (viewCenter - cardCenter) / (viewH / 2)
       const clamped = Math.min(Math.max(signed, -1), 1)
 
-      // Apply anchor zone: if within [-halfAnchor, halfAnchor], treat as 0
+      // Raw position (no anchor)
+      targetRaw.current = clamped
+
+      // Anchored position
       let adjustedPos
       if (clamped >= -halfAnchor && clamped <= halfAnchor) {
         adjustedPos = 0
       } else if (clamped < -halfAnchor) {
-        // Remap [-1, -halfAnchor] to [-1, 0]
-        adjustedPos = (clamped + halfAnchor) / (1 - halfAnchor) * -1 * -1
         adjustedPos = -((Math.abs(clamped) - halfAnchor) / (1 - halfAnchor))
       } else {
-        // Remap [halfAnchor, 1] to [0, 1]
         adjustedPos = (clamped - halfAnchor) / (1 - halfAnchor)
       }
 
@@ -57,13 +58,20 @@ export default function useCardScale(minScale = 0.65, smoothing = 0.04, anchorZo
     const animate = () => {
       const sDiff = targetScale.current - currentScale.current
       const pDiff = targetPos.current - currentPos.current
+      const rDiff = targetRaw.current - currentRaw.current
       currentScale.current += sDiff * smoothing
       currentPos.current += pDiff * smoothing
+      currentRaw.current += rDiff * smoothing
 
       if (Math.abs(sDiff) < 0.0005) currentScale.current = targetScale.current
       if (Math.abs(pDiff) < 0.001) currentPos.current = targetPos.current
+      if (Math.abs(rDiff) < 0.001) currentRaw.current = targetRaw.current
 
-      setValues({ scale: currentScale.current, position: currentPos.current })
+      setValues({
+        scale: currentScale.current,
+        position: currentPos.current,
+        rawPosition: currentRaw.current,
+      })
       rafRef.current = requestAnimationFrame(animate)
     }
 
@@ -81,5 +89,5 @@ export default function useCardScale(minScale = 0.65, smoothing = 0.04, anchorZo
     }
   }, [minScale, smoothing, anchorZone])
 
-  return [ref, values.scale, values.position]
+  return [ref, values.scale, values.position, values.rawPosition]
 }

@@ -153,6 +153,25 @@
   border-bottom: 1px solid var(--mid);
 }
 
+.longImageWrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 1px solid var(--mid);
+  cursor: ns-resize;
+  scrollbar-width: none;
+}
+
+.longImageWrap::-webkit-scrollbar {
+  display: none;
+}
+
+.longImage {
+  width: 100%;
+  display: block;
+}
+
 .imagePlaceholder {
   width: 100%;
   aspect-ratio: 16 / 9;

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { FiGithub, FiExternalLink } from 'react-icons/fi'
 import projects from '../data/projects'
 import useCardScale from '../hooks/useCardScale'
@@ -37,6 +37,60 @@ const BG_ANCHOR = 0.5         // <-- Change: how long bg text holds still (0-1)
 
 function ProjectCard({ project, index }) {
   const [ref, scale, position] = useCardScale(MIN_SCALE, SMOOTHING, CARD_ANCHOR)
+  const scrollContainerRef = useRef(null)
+
+  /*
+   * LONG IMAGE SCROLL VALUES:
+   * - SCROLL_SPEED: multiplier for wheel input (lower = slower scroll, default 0.3)
+   * - SCROLL_SMOOTHING: lerp factor (lower = smoother, default 0.06)
+   */
+  const SCROLL_SPEED = 0.3         // <-- Change: wheel sensitivity (0.1 = very slow, 1 = instant)
+  const SCROLL_SMOOTHING = 0.06    // <-- Change: smoothness (0.02 = very smooth, 0.2 = snappy)
+
+  const targetScroll = useRef(0)
+  const currentScroll = useRef(0)
+  const scrollRaf = useRef(null)
+
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const animate = () => {
+      const diff = targetScroll.current - currentScroll.current
+      if (Math.abs(diff) > 0.5) {
+        currentScroll.current += diff * SCROLL_SMOOTHING
+        container.scrollTop = currentScroll.current
+        scrollRaf.current = requestAnimationFrame(animate)
+      } else {
+        currentScroll.current = targetScroll.current
+        container.scrollTop = currentScroll.current
+        scrollRaf.current = null
+      }
+    }
+
+    const onWheel = (e) => {
+      const maxScroll = container.scrollHeight - container.clientHeight
+      if (maxScroll <= 0) return
+
+      e.preventDefault()
+
+      // Accumulate target with speed multiplier, clamp to bounds
+      targetScroll.current = Math.min(
+        Math.max(targetScroll.current + e.deltaY * SCROLL_SPEED, 0),
+        maxScroll
+      )
+
+      if (!scrollRaf.current) {
+        scrollRaf.current = requestAnimationFrame(animate)
+      }
+    }
+
+    container.addEventListener('wheel', onWheel, { passive: false })
+    return () => {
+      container.removeEventListener('wheel', onWheel)
+      if (scrollRaf.current) cancelAnimationFrame(scrollRaf.current)
+    }
+  }, [])
 
   const isEven = index % 2 === 1
   const cardDirection = isEven ? 1 : -1
@@ -107,7 +161,15 @@ function ProjectCard({ project, index }) {
         }}
       >
         <div className={styles.imageWrap}>
-          {project.image ? (
+          {project.longImage ? (
+            <div ref={scrollContainerRef} className={styles.longImageWrap}>
+              <img
+                src={project.longImage}
+                alt={project.title}
+                className={styles.longImage}
+              />
+            </div>
+          ) : project.image ? (
             <img
               src={project.image}
               alt={project.title}

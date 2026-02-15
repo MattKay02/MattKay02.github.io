@@ -1,5 +1,6 @@
 import msaScreenshot from '../assets/projects/MSA-screenshot.png'
 import redCrossScreenshot from '../assets/projects/RedCrossReigate-screenshot.png'
+import redCrossLong from '../assets/projects/RedCrossReigate-long-screenshot.png'
 
 const projects = [
   {
@@ -34,6 +35,7 @@ const projects = [
     github: 'https://github.com/MattKay02/RedCrossReigate',
     liveUrl: 'https://red-cross-reigate.vercel.app',
     image: redCrossScreenshot,
+    longImage: redCrossLong,
     tech: ['React', 'Vite', 'CSS Modules'],
   },
 ]
