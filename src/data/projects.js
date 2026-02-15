@@ -8,7 +8,7 @@ const projects = [
     title: 'Liftio',
     description:
       'Fitness tracking application for iOS and Android with workout logging, progress analytics, and social features.',
-    github: 'https://github.com/MattKay02',
+    github: 'https://github.com/MattKay02/Liftio',
     liveUrl: null,
     image: null,
     tech: ['React Native', 'Node.js', 'MongoDB'],
@@ -17,7 +17,7 @@ const projects = [
   {
     id: 2,
     category: 'Web',
-    title: 'Matthew Simpson Architecture',
+    title: 'MSA',
     description:
       'Portfolio website for architect Matthew Simpson showcasing architectural projects and practice.',
     github: 'https://github.com/MattKay02/MSA',
@@ -28,7 +28,7 @@ const projects = [
   {
     id: 3,
     category: 'Web',
-    title: 'Red Cross Reigate',
+    title: 'Red Cross',
     description:
       'Landing page for a traditional local pub in Reigate, Surrey. Featuring drinks menus, events, and essential pub information.',
     github: 'https://github.com/MattKay02/RedCrossReigate',
