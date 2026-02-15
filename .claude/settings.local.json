@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:www.mgkcodes.com)",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Bash(npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(curl:*)"
     ]
   }
 }
