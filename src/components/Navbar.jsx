@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import styles from './Navbar.module.css'
 
 const links = [
@@ -31,10 +32,10 @@ function Navbar() {
           className={styles.logo}
           onClick={(e) => handleClick(e, '#hero')}
         >
-          MK
+          MK.
         </a>
 
-        {/* Desktop links */}
+        {/* Desktop links (centered) */}
         <ul className={styles.desktopLinks}>
           {links.map((link) => (
             <li key={link.href}>
@@ -48,6 +49,19 @@ function Navbar() {
             </li>
           ))}
         </ul>
+
+        {/* Social icons (top right) */}
+        <div className={styles.socials}>
+          <a href="https://github.com/MattKay02" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
+            <FiGithub />
+          </a>
+          <a href="https://linkedin.com/in/matthew-kay-" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
+            <FiLinkedin />
+          </a>
+          <a href="mailto:mattykay2002@gmail.com" className={styles.socialIcon} aria-label="Email">
+            <FiMail />
+          </a>
+        </div>
 
         {/* Burger button (mobile only) */}
         <button

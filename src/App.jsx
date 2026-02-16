@@ -1,3 +1,5 @@
+import { useState, useEffect, useCallback } from 'react'
+import IntroScreen from './components/IntroScreen'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Portfolio from './components/Portfolio'
@@ -8,8 +10,22 @@ import Footer from './components/Footer'
 import styles from './App.module.css'
 
 function App() {
+  const [introDone, setIntroDone] = useState(false)
+
+  const handleIntroComplete = useCallback(() => {
+    setIntroDone(true)
+    document.body.style.overflow = ''
+  }, [])
+
+  useEffect(() => {
+    if (!introDone) {
+      document.body.style.overflow = 'hidden'
+    }
+  }, [introDone])
+
   return (
     <div className={styles.app}>
+      {!introDone && <IntroScreen onComplete={handleIntroComplete} />}
       <Navbar />
       <main>
         <section id="hero">

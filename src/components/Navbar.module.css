@@ -27,10 +27,32 @@
   opacity: 0.7;
 }
 
-/* ── Desktop links ── */
+/* ── Desktop links (centered) ── */
 .desktopLinks {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 2.5rem;
+}
+
+/* ── Social icons (right) ── */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.socialIcon {
+  color: var(--light);
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.socialIcon:hover {
+  color: var(--white);
 }
 
 .link {
@@ -110,6 +132,10 @@
   }
 
   .desktopLinks {
+    display: none;
+  }
+
+  .socials {
     display: none;
   }
 
