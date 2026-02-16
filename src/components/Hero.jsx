@@ -56,7 +56,7 @@ function Hero() {
       {/* Background text — slides left */}
       <div
         className={styles.bgText}
-        style={slideX(-800)}   /* <-- Slide distance: 800px left */
+        style={slideX(-1500)}   /* <-- Slide distance: 1500px left */
         aria-hidden="true"
       >
         MATTHEW
