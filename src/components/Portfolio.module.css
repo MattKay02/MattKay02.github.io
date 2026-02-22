@@ -155,6 +155,30 @@
   border-bottom: 1px solid var(--mid);
 }
 
+
+/* Dual mobile screenshots — side by side, scrollable */
+.dualScrollWrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow-y: auto;
+  overflow-x: hidden;
+  cursor: ns-resize;
+  scrollbar-width: none;
+  display: flex;
+  align-items: flex-start;
+  background: var(--dark);
+}
+
+.dualScrollWrap::-webkit-scrollbar {
+  display: none;
+}
+
+.dualScrollImage {
+  width: 50%;
+  flex-shrink: 0;
+  display: block;
+}
+
 .longImageContainer {
   position: relative;
   border-bottom: 1px solid var(--mid);

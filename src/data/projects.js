@@ -2,6 +2,8 @@ import msaScreenshot from '../assets/projects/MSA/MSA-screenshot.png'
 import redCrossScreenshot from '../assets/projects/RedCross/RedCrossReigate-screenshot.png'
 import redCrossLong from '../assets/projects/RedCross/RedCrossReigate-long-screenshot.png'
 import redCrossMobileLong from '../assets/projects/RedCross/Mobile-RedCrossReigate-long-screenshot.png'
+import footyScores1 from '../assets/projects/FootyScores/FootyScores-mobile-screenshot-1.png'
+import footyScores2 from '../assets/projects/FootyScores/FootyScores-mobile-screenshot-2.png'
 
 const projects = [
   {
@@ -29,6 +31,18 @@ const projects = [
   },
   {
     id: 3,
+    category: 'Mobile App',
+    title: 'FootyScores',
+    description:
+      'Full-stack mobile app pulling live football data from API-Football. Built to explore end-to-end development with a React Native/Expo frontend and a Node.js/Express backend hosted on Render.',
+    github: 'https://github.com/MattKay02/FootyScores',
+    liveUrl: null,
+    dualMobileImages: [footyScores1, footyScores2],
+    tech: ['React Native', 'Expo SDK', 'Node.js', 'Express', 'API-Football', 'Render'],
+    status: 'In Development',
+  },
+  {
+    id: 4,
     category: 'Web',
     title: 'Red Cross',
     description:

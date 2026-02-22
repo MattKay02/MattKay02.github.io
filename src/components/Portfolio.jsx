@@ -185,7 +185,25 @@ function ProjectCard({ project, index }) {
         }}
       >
         <div className={styles.imageWrap}>
-          {project.longImage ? (
+          {project.dualMobileImages ? (
+            <div className={styles.longImageContainer}>
+              <div ref={scrollContainerRef} className={styles.dualScrollWrap}>
+                {project.dualMobileImages.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    className={styles.dualScrollImage}
+                  />
+                ))}
+              </div>
+              {showScrollHint && (
+                <div className={styles.scrollHint}>
+                  <FiChevronsDown />
+                </div>
+              )}
+            </div>
+          ) : project.longImage ? (
             <div className={styles.longImageContainer}>
               <div
                 ref={scrollContainerRef}
