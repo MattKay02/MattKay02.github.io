@@ -1,7 +1,7 @@
-import msaScreenshot from '../assets/projects/MSA-screenshot.png'
-import redCrossScreenshot from '../assets/projects/RedCrossReigate-screenshot.png'
-import redCrossLong from '../assets/projects/RedCrossReigate-long-screenshot.png'
-import redCrossMobileLong from '../assets/projects/Mobile-RedCrossReigate-long-screenshot.png'
+import msaScreenshot from '../assets/projects/MSA/MSA-screenshot.png'
+import redCrossScreenshot from '../assets/projects/RedCross/RedCrossReigate-screenshot.png'
+import redCrossLong from '../assets/projects/RedCross/RedCrossReigate-long-screenshot.png'
+import redCrossMobileLong from '../assets/projects/RedCross/Mobile-RedCrossReigate-long-screenshot.png'
 
 const projects = [
   {
