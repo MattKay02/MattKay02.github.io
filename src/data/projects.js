@@ -1,4 +1,6 @@
 import msaScreenshot from '../assets/projects/MSA/MSA-screenshot.png'
+import msaLong from '../assets/projects/MSA/MSA-long-screenshot.png'
+import msaMobileLong from '../assets/projects/MSA/Mobile-MSA-long-screenshot.png'
 import redCrossScreenshot from '../assets/projects/RedCross/RedCrossReigate-screenshot.png'
 import redCrossLong from '../assets/projects/RedCross/RedCrossReigate-long-screenshot.png'
 import redCrossMobileLong from '../assets/projects/RedCross/Mobile-RedCrossReigate-long-screenshot.png'
@@ -23,11 +25,13 @@ const projects = [
     category: 'Web',
     title: 'MSA',
     description:
-      'Portfolio website for architect Matthew Simpson showcasing architectural projects and practice.',
+      'Static multi-page portfolio for Matthew Simpson, an architecture student at UNLV. Showcases projects with rich imagery, design narratives, and contact info — built with pure vanilla web technologies.',
     github: 'https://github.com/MattKay02/MSA',
     liveUrl: 'https://matthewsimpsonarchitecture.vercel.app',
     image: msaScreenshot,
-    tech: ['React', 'Vite', 'CSS Modules'],
+    longImage: msaLong,
+    mobileLongImage: msaMobileLong,
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Google Fonts'],
   },
   {
     id: 3,

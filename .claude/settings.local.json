@@ -7,7 +7,9 @@
       "Bash(netstat:*)",
       "Bash(findstr:*)",
       "Bash(curl:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(gh api repos/MattKay02/MSA/readme --jq '.content')",
+      "Bash(gh api repos/MattKay02/MSA/readme)"
     ]
   }
 }
