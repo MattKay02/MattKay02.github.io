@@ -1,31 +1,85 @@
+/* MGKCodes palette */
+:root {
+  --mgk-bg: #0a0a0a;
+  --mgk-surface: #171717;
+  --mgk-border: #27272a;
+  --mgk-text: #ffffff;
+  --mgk-muted: #a1a1aa;
+  --mgk-blue: #0074d9;
+  --mgk-blue-dim: rgba(0, 116, 217, 0.15);
+}
+
 .mgk {
-  border-top: 1px solid var(--mid);
-  border-bottom: 1px solid var(--mid);
-  background: var(--dark);
+  border-top: 1px solid var(--mgk-border);
+  border-bottom: 1px solid var(--mgk-border);
+  background: var(--mgk-bg);
+  position: relative;
+  overflow: hidden;
 }
 
 .inner {
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
+  z-index: 1;
 }
 
-/* Background label */
-.bgLabel {
+/* Background ticker */
+.bgTicker {
   position: absolute;
   top: 50%;
-  right: -5%;
+  left: 0;
+  width: 100%;
   transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.bgTickerTrack {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: tickerRight 20s linear infinite;
+}
+
+.bgTickerTrack span {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 20vw;
-  color: var(--black);
-  opacity: 0.4;
-  white-space: nowrap;
+  color: var(--mgk-text);
+  opacity: 0.04;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+}
+
+/* Logo ticker */
+.bgLogoTicker {
+  position: absolute;
+  top: calc(50% + 12vw);
+  left: 0;
+  width: 100%;
   pointer-events: none;
   user-select: none;
-  letter-spacing: -0.04em;
+}
+
+.bgLogoTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: tickerRight 20s linear infinite;
+}
+
+.bgLogoItem {
+  height: clamp(40px, 5.5vw, 80px);
+  width: auto;
+  flex-shrink: 0;
+  opacity: 0.04;
+  padding: 0 2.5rem;
+}
+
+@keyframes tickerRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
 .content {
@@ -40,21 +94,44 @@
   flex-shrink: 0;
 }
 
+.logoLink {
+  display: block;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.logoLink:hover {
+  opacity: 1;
+}
+
+.logo {
+  width: clamp(200px, 28vw, 400px);
+  display: block;
+}
+
+.header {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
 .title {
   font-size: clamp(2.5rem, 6vw, 5rem);
   color: var(--white);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  letter-spacing: 0.05em;
+}
+
+.titleOutline {
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: transparent;
+  -webkit-text-stroke: 2px var(--mid);
+  margin-top: -0.5rem;
+  margin-left: 4rem;
 }
 
 .line {
-  width: 3px;
-  height: 80px;
+  width: 120px;
+  height: 3px;
   background: var(--grey);
   margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .right {
@@ -64,9 +141,18 @@
 
 .text {
   font-size: 1rem;
-  color: var(--light);
+  color: var(--mgk-muted);
   line-height: 1.8;
   margin-bottom: 1.5rem;
+}
+
+
+/* Action buttons */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .link {
@@ -77,16 +163,30 @@
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.15em;
-  color: var(--white);
-  border: 2px solid var(--white);
+  color: var(--mgk-text);
+  border: 2px solid var(--mgk-blue);
+  background: var(--mgk-blue);
   padding: 0.8rem 1.8rem;
-  margin-top: 1rem;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  text-decoration: none;
 }
 
 .link:hover {
-  background: var(--white);
-  color: var(--black);
+  background: #005bb5;
+  border-color: #005bb5;
+  color: var(--mgk-text);
+}
+
+.linkGhost {
+  background: transparent;
+  border-color: var(--mgk-border);
+  color: var(--mgk-muted);
+}
+
+.linkGhost:hover {
+  background: var(--mgk-surface);
+  border-color: var(--mgk-blue);
+  color: var(--mgk-text);
 }
 
 /* Responsive */
@@ -96,18 +196,13 @@
     gap: 2.5rem;
   }
 
-  .title {
-    writing-mode: horizontal-tb;
+  .left {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
   }
 
-  .line {
-    width: 80px;
-    height: 3px;
-    margin-left: 0;
-  }
-
-  .bgLabel {
+  .bgTickerTrack span {
     font-size: 35vw;
-    right: -10%;
   }
 }

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import mgkLogo from '../assets/MGKCodes/logo-white-elements.svg'
 import styles from './Navbar.module.css'
 
 const links = [
-  { label: 'WORK', href: '#work' },
+  { label: 'PORTFOLIO', href: '#work' },
   { label: 'STACK', href: '#stack' },
-  { label: 'FREELANCE', href: '#freelance' },
-  { label: 'ABOUT', href: '#about' },
+  { label: 'MGKCODES', href: '#freelance' },
+  { label: 'ABOUT ME', href: '#about' },
 ]
 
 function Navbar() {
@@ -52,6 +53,9 @@ function Navbar() {
 
         {/* Social icons (top right) */}
         <div className={styles.socials}>
+          <a href="https://mgkcodes.com" target="_blank" rel="noopener noreferrer" className={styles.mgkLogoLink} aria-label="MGKCodes">
+            <img src={mgkLogo} alt="MGKCodes" className={styles.mgkLogoImg} draggable="false" />
+          </a>
           <a href="https://github.com/MattKay02" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
             <FiGithub />
           </a>

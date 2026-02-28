@@ -55,6 +55,23 @@
   color: var(--white);
 }
 
+.mgkLogoLink {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.mgkLogoLink:hover {
+  opacity: 1;
+}
+
+.mgkLogoImg {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
 .link {
   font-family: var(--font-heading);
   font-weight: 700;

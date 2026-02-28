@@ -72,6 +72,14 @@
   background: var(--white);
 }
 
+.filterCount {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  opacity: 0.5;
+}
+
 /* Stacked cards */
 .stack {
   display: flex;

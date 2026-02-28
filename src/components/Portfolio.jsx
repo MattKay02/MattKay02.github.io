@@ -4,12 +4,14 @@ import projects from '../data/projects'
 import useCardScale from '../hooks/useCardScale'
 import styles from './Portfolio.module.css'
 
-const filters = ['All', 'Mobile Apps', 'Web Apps']
+const filters = ['Featured', 'Mobile Apps', 'Web Apps', 'Landing Pages', 'All']
 
 const filterMap = {
-  All: null,
+  Featured: 'featured',
   'Mobile Apps': 'Mobile App',
-  'Web Apps': 'Web',
+  'Web Apps': 'Web App',
+  'Landing Pages': 'Landing Page',
+  All: null,
 }
 
 /*
@@ -29,11 +31,11 @@ const filterMap = {
  *   3. SLIDE OUT: text exits from opposite side of card
  */
 const MIN_SCALE = 0.65       // <-- Change: minimum card scale (0-1)
-const SMOOTHING = 0.04        // <-- Change: animation smoothness (lower = smoother)
+const SMOOTHING = 0.025       // <-- Change: animation smoothness (lower = smoother)
 const SLIDE_DISTANCE = 150    // <-- Change: max horizontal slide in px
 const CARD_ANCHOR = 0.35      // <-- Change: how long card holds at full size (0-1)
-const BG_OFFSET = 500         // <-- Change: bg text off-screen distance in px
-const BG_ANCHOR = 0.5         // <-- Change: how long bg text holds still (0-1)
+const BG_OFFSET = 800         // <-- Change: bg text off-screen distance in px
+const BG_ANCHOR = 0.8         // <-- Change: how long bg text holds still (0-1)
 
 function ProjectCard({ project, index }) {
   const [ref, scale, position] = useCardScale(MIN_SCALE, SMOOTHING, CARD_ANCHOR)
@@ -144,10 +146,10 @@ function ProjectCard({ project, index }) {
   // BG TEXT: 3-phase animation
   // position: -1 (below/entering) → 0 (centered) → +1 (above/exiting)
   //
-  // Left card (isEven=false): enters from LEFT (-), exits RIGHT (+)
-  // Right card (isEven=true): enters from RIGHT (+), exits LEFT (-)
-  const enterDir = isEven ? 1 : -1   // direction text comes FROM
-  const exitDir = isEven ? -1 : 1    // direction text goes TO
+  // Right card (isEven=true): text emerges from the RIGHT (card side) and returns RIGHT on exit
+  // Left card (isEven=false): text emerges from the LEFT (card side) and returns LEFT on exit
+  const enterDir = isEven ? 1 : -1   // direction text comes FROM (toward card)
+  const exitDir = enterDir            // text always returns toward the card
 
   // Define the 3 zones based on position
   const halfAnchor = BG_ANCHOR / 2
@@ -341,12 +343,20 @@ function ProjectCard({ project, index }) {
   )
 }
 
+function getCount(filterKey) {
+  if (filterMap[filterKey] === null) return projects.length
+  if (filterMap[filterKey] === 'featured') return projects.filter((p) => p.featured).length
+  return projects.filter((p) => p.category === filterMap[filterKey]).length
+}
+
 function Portfolio() {
-  const [active, setActive] = useState('All')
+  const [active, setActive] = useState('Featured')
 
   const filtered =
     filterMap[active] === null
       ? projects
+      : filterMap[active] === 'featured'
+      ? projects.filter((p) => p.featured)
       : projects.filter((p) => p.category === filterMap[active])
 
   return (
@@ -365,6 +375,7 @@ function Portfolio() {
             onClick={() => setActive(f)}
           >
             {f}
+            <span className={styles.filterCount}>{getCount(f)}</span>
           </button>
         ))}
       </div>

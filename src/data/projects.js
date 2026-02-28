@@ -18,6 +18,7 @@ const projects = [
   {
     id: 1,
     category: 'Mobile App',
+    featured: true,
     title: 'Liftio',
     description:
       'Fitness tracking application for iOS and Android with workout logging, progress analytics, and social features.',
@@ -29,7 +30,8 @@ const projects = [
   },
   {
     id: 5,
-    category: 'Web',
+    category: 'Web App',
+    featured: true,
     title: 'Ledger',
     description:
       'Personal finance dashboard with AI-powered transaction entry via Claude, OAuth sign-in, live currency conversion, and chart-based budget tracking.',
@@ -40,7 +42,8 @@ const projects = [
   },
   {
     id: 2,
-    category: 'Web',
+    category: 'Landing Page',
+    featured: true,
     title: 'MSA',
     description:
       'Static multi-page portfolio for Matthew Simpson, an architecture student at UNLV. Showcases projects with rich imagery, design narratives, and contact info — built with pure vanilla web technologies.',
@@ -65,7 +68,7 @@ const projects = [
   },
   {
     id: 4,
-    category: 'Web',
+    category: 'Landing Page',
     title: 'Red Cross',
     description:
       'Landing page for a traditional local pub in Reigate, Surrey. Featuring drinks menus, events, and essential pub information.',
