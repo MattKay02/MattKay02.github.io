@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { FiGithub, FiExternalLink, FiChevronsDown, FiMonitor, FiSmartphone } from 'react-icons/fi'
+import { FiGithub, FiExternalLink, FiChevronsDown, FiMonitor, FiSmartphone, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import projects from '../data/projects'
 import useCardScale from '../hooks/useCardScale'
 import styles from './Portfolio.module.css'
@@ -54,6 +54,25 @@ function ProjectCard({ project, index }) {
   const viewModeRef = useRef('desktop')
   const [showScrollHint, setShowScrollHint] = useState(true)
   const [viewMode, setViewMode] = useState('desktop') // 'desktop' | 'mobile'
+  const [carouselIndex, setCarouselIndex] = useState(0)
+
+  const resetCarouselScroll = () => {
+    if (scrollRaf.current) { cancelAnimationFrame(scrollRaf.current); scrollRaf.current = null }
+    targetScroll.current = 0
+    currentScroll.current = 0
+    if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0
+    setShowScrollHint(true)
+  }
+
+  const prevCarousel = () => {
+    setCarouselIndex(i => (i - 1 + project.carouselImages.length) % project.carouselImages.length)
+    resetCarouselScroll()
+  }
+
+  const nextCarousel = () => {
+    setCarouselIndex(i => (i + 1) % project.carouselImages.length)
+    resetCarouselScroll()
+  }
 
   const switchView = (mode) => {
     if (mode === viewMode) return
@@ -185,7 +204,28 @@ function ProjectCard({ project, index }) {
         }}
       >
         <div className={styles.imageWrap}>
-          {project.dualMobileImages ? (
+          {project.carouselImages ? (
+            <div className={styles.longImageContainer}>
+              <div ref={scrollContainerRef} className={styles.longImageWrap}>
+                <img
+                  src={project.carouselImages[carouselIndex]}
+                  alt={`${project.title} screenshot ${carouselIndex + 1}`}
+                  className={styles.longImage}
+                />
+              </div>
+              {showScrollHint && (
+                <div className={styles.scrollHint}>
+                  <FiChevronsDown />
+                </div>
+              )}
+              <button className={`${styles.carouselBtn} ${styles.carouselBtnLeft}`} onClick={prevCarousel} aria-label="Previous image">
+                <FiChevronLeft />
+              </button>
+              <button className={`${styles.carouselBtn} ${styles.carouselBtnRight}`} onClick={nextCarousel} aria-label="Next image">
+                <FiChevronRight />
+              </button>
+            </div>
+          ) : project.dualMobileImages ? (
             <div className={styles.longImageContainer}>
               <div ref={scrollContainerRef} className={styles.dualScrollWrap}>
                 {project.dualMobileImages.map((src, i) => (

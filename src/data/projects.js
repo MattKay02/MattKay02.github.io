@@ -1,3 +1,10 @@
+import ledger1 from '../assets/projects/Ledger/Ledger-1-(Overview).png'
+import ledger2 from '../assets/projects/Ledger/Ledger-2-(Ledger-bot).png'
+import ledger3 from '../assets/projects/Ledger/Ledger-3-(Expenses).png'
+import ledger4 from '../assets/projects/Ledger/Ledger-4-(Income).png'
+import ledger5 from '../assets/projects/Ledger/Ledger-5-(Budgets).png'
+import ledger6 from '../assets/projects/Ledger/Ledger-6-(Reports).png'
+import ledger7 from '../assets/projects/Ledger/Ledger-7-(Settings).png'
 import msaScreenshot from '../assets/projects/MSA/MSA-screenshot.png'
 import msaLong from '../assets/projects/MSA/MSA-long-screenshot.png'
 import msaMobileLong from '../assets/projects/MSA/Mobile-MSA-long-screenshot.png'
@@ -19,6 +26,17 @@ const projects = [
     image: null,
     tech: ['React Native', 'Node.js', 'MongoDB'],
     status: 'In Development',
+  },
+  {
+    id: 5,
+    category: 'Web',
+    title: 'Ledger',
+    description:
+      'Personal finance dashboard with AI-powered transaction entry via Claude, OAuth sign-in, live currency conversion, and chart-based budget tracking.',
+    github: 'https://github.com/MattKay02/Ledger',
+    liveUrl: 'https://ledger-finance.vercel.app',
+    carouselImages: [ledger1, ledger2, ledger3, ledger4, ledger5, ledger6, ledger7],
+    tech: ['React', 'Vite', 'Supabase', 'Tailwind CSS', 'Recharts', 'Claude AI', 'Vercel'],
   },
   {
     id: 2,

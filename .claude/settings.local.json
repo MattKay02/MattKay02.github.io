@@ -9,7 +9,8 @@
       "Bash(curl:*)",
       "Bash(taskkill:*)",
       "Bash(gh api repos/MattKay02/MSA/readme --jq '.content')",
-      "Bash(gh api repos/MattKay02/MSA/readme)"
+      "Bash(gh api repos/MattKay02/MSA/readme)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }
