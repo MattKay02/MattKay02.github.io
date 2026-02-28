@@ -16,38 +16,51 @@ A bold, brutalist personal website for Matthew Kay, a software engineer speciali
 
 ### Brutalist Greyscale Aesthetic
 - **Color Palette**: Exclusively greyscale (blacks, greys, whites) with varying shades for high contrast
-- **Color Source**: Images are the ONLY source of color on the site
+- **Color Source**: Images are the ONLY source of color on the site — no blue, no accent colors anywhere
 - **Typography**: Large, bold, statement fonts used as design elements
 - **Layout**: Asymmetric grids, unconventional positioning, elements breaking traditional alignment
 - **Overlapping**: Text and images intentionally overlap in creative ways
 - **Raw Edges**: No rounded corners, hard edges, stark contrasts
 - **Breaking Norms**: Layouts that deliberately challenge standard website conventions
 
+### Section Heading Pattern
+All sections use a consistent two-line heading style:
+- Line 1: Solid white text (smaller, e.g. `SELECTED`, `ABOUT`, `MGK`)
+- Line 2: Larger outline text with `--mid` greyscale stroke (e.g. `WORK`, `ME`, `CODES`), offset right with `margin-left`
+- Followed by a short `--grey` horizontal bar (120px × 3px)
+
 ### Interactions & Animations
 - Subtle hover effects throughout
-- Unique anchor scrolling between sections
-- Smooth scroll navigation
+- Smooth scroll navigation via anchor links
 - Clickable elements with creative feedback
-- Interactive states that enhance the brutalist aesthetic
 - Animations that feel intentional, not decorative
 
 ## Technical Stack
-- **Framework**: React (specify if Next.js or plain React based on preference)
+- **Framework**: React (Vite, plain React — not Next.js)
+- **Styling**: CSS Modules per component
 - **Structure**: Single-page application
 - **Navigation**: Anchor links that scroll to sections
 - **Responsive**: Mobile-friendly design
 - **Performance**: Fast loading, optimized images
 
+## Navigation
+
+### Navbar (fixed, top)
+- **Logo**: `MK.` — left side, scrolls to `#hero`
+- **Desktop links** (centered): `PORTFOLIO` → `#work`, `STACK` → `#stack`, `MGKCODES` → `#freelance`, `ABOUT ME` → `#about`
+- **Right side icons** (left to right): MGKCodes logo (links to mgkcodes.com), GitHub, LinkedIn, Email — all same visual hierarchy, no separators
+- **Mobile**: Burger menu with slide-down panel; socials hidden, burger replaces them
+
 ## Site Structure & Sections
 
-### 1. Hero Section
+### 1. Hero Section (`#hero`)
 **Purpose**: Bold introduction to Matthew Kay
 
 **Content**:
 - Name: Matthew Kay
 - Title: Software Developer
 - Subtle implication of AI/prompt engineering expertise through copy
-- Headshot image (placeholder - user will replace)
+- Headshot image
 - Contact links: LinkedIn, Email, GitHub profile
 
 **Design Notes**:
@@ -56,111 +69,66 @@ A bold, brutalist personal website for Matthew Kay, a software engineer speciali
 - Overlapping text and image elements
 - High contrast greyscale
 
-### 2. Portfolio Section
-**Purpose**: PRIMARY FOCUS - Showcase development projects
+### 2. Portfolio Section (`#work`)
+**Purpose**: PRIMARY FOCUS — showcase development projects
 
-**Architecture** (from MGKCodes):
-- 3-column grid layout
-- Project cards containing:
-  - Preview image (placeholder - user will replace)
-  - Category tag
-  - Project title
-  - Brief description
-  - GitHub repository link
-  - Technology stack tags
+**Implementation**:
+- Vertical stack of project cards, scroll-driven scale animation
+- Cards alternate left/right layout (odd/even index)
+- Each card has: long scrollable image preview, category badge, status badge (optional), title, description, tech tags, GitHub link, optional live link
+- Some projects support carousel images (multiple screenshots), dual mobile images, or desktop/mobile view toggle
+- Filter tabs: Featured, Mobile Apps, Web Apps, Landing Pages, All
+- Background large text slides in/anchors/slides out per card as you scroll
 
-**Design Notes**:
-- Maintain brutalist aesthetic (NOT the MGKCodes design style)
-- Asymmetric grid arrangement
-- Cards with hard edges, high contrast
-- Overlapping elements where appropriate
-- Scalable to add more projects easily
+**Heading**: `SELECTED` / `WORK`
 
-**Project Information Structure**:
-Each project card should accommodate:
-- Large preview image
-- Project category/type
-- Project name
-- 2-3 sentence description
-- GitHub repo link prominently displayed
-- Tech stack tags/badges
-
-### 3. Tech Stack Section
+### 3. Tech Stack Section (`#stack`)
 **Purpose**: Display technologies and tools used
 
-**Categories to Display**:
-
-**Languages**:
-- JavaScript
-- TypeScript
-- Python
-- HTML/CSS
-- C++
-- C#
-
-**Frameworks/Libraries**:
-- React
-- Next.js
-- Vue.js
-- Node.js
-
-**CSS Frameworks**:
-- Bootstrap
-
-**Databases**:
-- MongoDB
-- MySQL
-- Supabase
-
-**APIs**:
-- REST APIs
-
-**Tools/Platforms**:
-- GitHub
-- Vercel
-- Netlify
-
-**AI Tools** (subtle integration):
-- Claude
-- ChatGPT
-- Gemini
+**Categories**: Languages (JS, TS, Python, HTML/CSS, C++, C#), Frameworks (React, Next.js, Vue.js, Node.js), CSS (Bootstrap), Databases (MongoDB, MySQL, Supabase), APIs (REST), Tools (GitHub, Vercel, Netlify), AI Tools (Claude, ChatGPT, Gemini — subtly included)
 
 **Design Notes**:
-- Use official logos/icons for each technology
-- All logos in greyscale (match site aesthetic)
-- Creative, asymmetric layout
-- Icons should feel integrated, not just listed
-- AI tools subtly included, not emphasized
+- Official logos in greyscale
+- Creative asymmetric layout
+- AI tools present but not emphasized
 
-### 4. MGKCodes Section
+### 4. MGKCodes Section (`#freelance`)
 **Purpose**: Showcase freelance work and business
 
 **Content**:
-- Description of MGKCodes freelance services
-- Link to mgkcodes.com
-- Brief explanation of client work approach
-- Professional positioning
+- MGKCodes logo (links to mgkcodes.com)
+- Description of freelance services and own products
+- Links: MGKCODES.COM (primary) + GITHUB (ghost)
+- Background: scrolling text ticker (`MGKCODES`) + scrolling logo ticker
+
+**Heading**: `MGK` / `CODES` — greyscale style matching rest of site (NOT blue)
 
 **Design Notes**:
-- Fairly large section (significant presence)
-- NOT overshadowing portfolio
-- Bold, clear presentation
-- Link to MGKCodes site prominently displayed
+- Significant section presence, not overshadowing portfolio
+- Left column: logo link; right column: text + action buttons
+- Section bordered top and bottom with `--mgk-border`
 
-### 5. Passions / About Me Section
-**Purpose**: Personal touch, humanize the developer
+### 5. About Me Section (`#about`)
+**Purpose**: Personal touch — humanise the developer
 
-**Content Areas**:
-- Fitness/Gym (image placeholder)
-- Golf (image placeholder)
-- PS5 Gaming (image placeholder)
+**Implementation**: Interactive card deck (Passions component)
 
-**Design Notes**:
-- NOT too robust - keep it light
-- Integrated to feel personalized
-- Images provide the color in otherwise greyscale site
-- Brief text, let images do the talking
-- Creative layout, not standard grid
+**Layout**: Two-column side-by-side
+- **Left**: `ABOUT` / `ME` heading + 3 bio paragraphs with left-border styling
+- **Right**: Interactive card deck + hint text above the deck
+
+**Card Deck**:
+- 3 cards: `GYM` (01, front), `GOLF` (02, middle), `GAMING` (03, back)
+- **Idle**: cards stacked with slight offsets and rotations
+- **Hover**: fans out into an arc (3-card fan)
+- **Click card**: selected card flies up and enlarges (translateY -198px, scale 1.5); remaining 2 cards fan to a 2-card spread; hover still fans them further
+- **Click again / Escape**: card returns to deck
+- Cards show: index number (top-right) + label (bottom-left) only — no descriptive notes
+- Hint text (`Hover to explore` / `Select a card` / `Click card to return`) sits **above** the deck
+
+**Background**: 21 animated shapes (12 squares + 9 lines), low opacity, dramatic float/scale/rotate keyframe animations — gives the section subtle movement
+
+**Heading**: `ABOUT` / `ME`
 
 ### 6. Footer
 **Purpose**: Creative closing element
@@ -168,105 +136,59 @@ Each project card should accommodate:
 **Content**:
 - Minimal relevant information
 - Contact links (LinkedIn, Email, GitHub)
-- Creative design element
-- Not a traditional footer
-
-**Design Notes**:
-- Creatively designed
 - Brutalist aesthetic maintained
-- Should feel like an intentional design choice, not an afterthought
 
-## Navigation
-- **Type**: Single-page site with anchor link navigation
-- **Navbar**: Fixed or sticky navigation with section links
-- **Behavior**: Smooth scroll to sections on click
-- **Anchor Links**: Scattered throughout the page naturally
-- **Sections**: Hero → Portfolio → Tech Stack → MGKCodes → Passions → Footer
-
-## Image Placeholders
-User will replace ALL images with their own:
-- Professional headshot (Hero section)
-- Portfolio project screenshots (multiple - one per project)
-- Fitness/gym photos (Passions section)
-- Golf photos (Passions section)
-- PS5 gaming setup/screenshots (Passions section)
-- Technology/tool logos (use official logos, converted to greyscale)
-
-**Placeholder Requirements**:
-- Clear indication these are placeholders
-- Appropriate aspect ratios
-- Easy to identify and replace
+## Images
+All real images are in place (no placeholders remaining for passions):
+- `src/assets/passions/Gym_image.PNG` — GYM card
+- `src/assets/passions/Golf_image.JPG` — GOLF card
+- `src/assets/passions/Playstation_image.png` — GAMING card
+- `src/assets/MGKCodes/logo-white-elements.svg` — MGKCodes logo (navbar + MGKCodes section)
+- Project screenshots in `src/assets/` per project
 
 ## Content Tone & Style
 - **Voice**: Short, semi-formal, professional but approachable
 - **Copy**: Concise and impactful
-- **Avoid**: 
-  - Flowery language
-  - Corporate jargon
-  - Excessive buzzwords
-  - Lorem ipsum
-  - AI-generated sounding copy
-- **Embrace**:
-  - Directness
-  - Clarity
-  - Personality
-  - Confidence
+- **Avoid**: Flowery language, corporate jargon, excessive buzzwords, lorem ipsum, AI-generated sounding copy
+- **Embrace**: Directness, clarity, personality, confidence
 
 ## Design Specifications
 
+### Color Variables (`src/index.css`)
+```
+--black:     #0a0a0a
+--dark:      #1a1a1a
+--mid:       #333333
+--grey:      #666666
+--light:     #cccccc
+--off-white: #e8e8e8
+--white:     #f5f5f5
+```
+No blue or accent colors used anywhere in the UI — greyscale only.
+
 ### Typography
-- Bold, oversized headings
-- Text as design element
-- Overlapping text and images
+- **Heading font**: Space Grotesk (bold, 800–900 weight)
+- **Body font**: Inter (400 weight)
+- Bold, oversized headings used as design elements
 - High contrast between text and background
-- Potentially rotated or cropped text elements
 
 ### Layout Principles
 - Asymmetric grids
 - Elements bleeding off edges
-- Diagonal/rotated elements
 - Overlapping sections
 - Breaking traditional alignment
-- Unconventional text wrapping
-
-### Color Usage
-- **Base**: Greyscale only (pure blacks, various greys, pure whites)
-- **Accents**: NONE - images provide all color
-- **Contrast**: High contrast between different grey shades
-- **Images**: Full color, standing out against greyscale
 
 ### Interactions
 - Smooth scrolling between sections
-- Hover states on interactive elements
-- Subtle animations that enhance brutalism
-- Creative anchor link behavior
-- Clickable elements with clear feedback
-
-## Technical Requirements
-- React-based single-page application
-- Responsive design (mobile, tablet, desktop)
-- Fast loading times
-- Semantic HTML structure
-- Accessible navigation
-- Optimized images
-- Clean, maintainable code
+- Hover states on all interactive elements
+- Spring cubic-bezier transitions on card deck: `cubic-bezier(0.34, 1.35, 0.64, 1)`
+- CSS keyframe animations for background geometry shapes
 
 ## What to Avoid
 - Traditional, conventional layouts
 - Rounded corners or soft edges
-- Generic templates
-- Bootstrap-style standard components
+- Any color accent (blue, brand color, etc.) — greyscale only
+- Generic templates or Bootstrap-style components
 - Overly flashy animations
-- Color beyond what images provide
-- Symmetrical, balanced layouts (embrace asymmetry)
+- Symmetrical, balanced layouts
 - Corporate/professional website clichés
-
-## Key Differentiators
-- **Brutalist aesthetic**: Bold, unconventional, rule-breaking
-- **Greyscale foundation**: Images provide only color
-- **Asymmetric layouts**: Challenging traditional design
-- **Overlapping elements**: Text and images interact creatively
-- **Single page**: Smooth navigation experience
-- **Portfolio-focused**: Projects are the star
-- **AI integration**: Subtle implication of modern development approach
-- **Personal touches**: Passions section adds humanity
