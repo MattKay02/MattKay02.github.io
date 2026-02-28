@@ -247,6 +247,13 @@
   z-index: 2;
 }
 
+/* Flipped: anchored outside the top-left corner (for right-side cards) */
+.viewTogglesLeft {
+  right: auto;
+  left: 0;
+  transform: translateX(calc(-100% - 0.75rem));
+}
+
 .viewToggleBtn {
   position: relative;
   display: flex;
@@ -428,6 +435,12 @@
     right: 0;
     transform: none;
     flex-direction: row;
+  }
+
+  .viewTogglesLeft {
+    left: 0;
+    right: auto;
+    transform: none;
   }
 
   .viewToggleBtn + .viewToggleBtn {

@@ -277,7 +277,7 @@ function ProjectCard({ project, index }) {
           </div>
         </div>
         {project.mobileLongImage && (
-          <div className={styles.viewToggles}>
+          <div className={`${styles.viewToggles} ${isEven ? styles.viewTogglesLeft : ''}`}>
             <button
               className={`${styles.viewToggleBtn} ${viewMode === 'desktop' ? styles.viewToggleActive : ''}`}
               onClick={() => switchView('desktop')}
