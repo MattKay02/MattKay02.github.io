@@ -13,6 +13,11 @@ import redCrossLong from '../assets/projects/RedCross/RedCrossReigate-long-scree
 import redCrossMobileLong from '../assets/projects/RedCross/Mobile-RedCrossReigate-long-screenshot.png'
 import footyScores1 from '../assets/projects/FootyScores/FootyScores-mobile-screenshot-1.png'
 import footyScores2 from '../assets/projects/FootyScores/FootyScores-mobile-screenshot-2.png'
+import liftio1 from '../assets/projects/Liftio/Screenshot-1.png'
+import liftio2 from '../assets/projects/Liftio/Screenshot-2.png'
+import liftio3 from '../assets/projects/Liftio/Screenshot-3.png'
+import liftio4 from '../assets/projects/Liftio/Screenshot-4.png'
+import liftio5 from '../assets/projects/Liftio/Screenshot-5.png'
 
 const projects = [
   {
@@ -21,11 +26,12 @@ const projects = [
     featured: true,
     title: 'Liftio',
     description:
-      'Fitness tracking application for iOS and Android with workout logging, progress analytics, and social features.',
+      'Minimalist offline-first gym tracker for iOS and Android. Log workouts from 330+ exercises, auto-populate weights from previous sessions, and visualise progress — all stored locally via SQLite, no account required.',
     github: 'https://github.com/MattKay02/Liftio',
     liveUrl: null,
-    image: null,
-    tech: ['React Native', 'Node.js', 'MongoDB'],
+    appStoreUrl: null,
+    dualSlideImages: [liftio1, liftio2, liftio3, liftio4, liftio5],
+    tech: ['React Native', 'Expo SDK', 'TypeScript', 'Zustand', 'SQLite', 'Reanimated'],
     status: 'In Development',
   },
   {

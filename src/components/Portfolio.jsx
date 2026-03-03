@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { FiGithub, FiExternalLink, FiChevronsDown, FiMonitor, FiSmartphone, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { SiAppstore } from 'react-icons/si'
 import projects from '../data/projects'
 import useCardScale from '../hooks/useCardScale'
 import styles from './Portfolio.module.css'
@@ -73,6 +74,16 @@ function ProjectCard({ project, index }) {
 
   const nextCarousel = () => {
     setCarouselIndex(i => (i + 1) % project.carouselImages.length)
+    resetCarouselScroll()
+  }
+
+  const prevSlide = () => {
+    setCarouselIndex(i => Math.max(0, i - 1))
+    resetCarouselScroll()
+  }
+
+  const nextSlide = () => {
+    setCarouselIndex(i => Math.min(project.dualSlideImages.length - 1, i + 1))
     resetCarouselScroll()
   }
 
@@ -206,7 +217,46 @@ function ProjectCard({ project, index }) {
         }}
       >
         <div className={styles.imageWrap}>
-          {project.carouselImages ? (
+          {project.dualSlideImages ? (
+            <div className={styles.longImageContainer}>
+              <div ref={scrollContainerRef} className={styles.dualSlideViewport}>
+                <div
+                  className={styles.dualSlideTrack}
+                  style={{ transform: `translateX(${-carouselIndex * 20}%)` }}
+                >
+                  {project.dualSlideImages.map((src, i) => (
+                    <img
+                      key={i}
+                      src={src}
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      className={styles.dualSlideImage}
+                    />
+                  ))}
+                </div>
+              </div>
+              {showScrollHint && (
+                <div className={styles.scrollHint}>
+                  <FiChevronsDown />
+                </div>
+              )}
+              <button
+                className={`${styles.carouselBtn} ${styles.carouselBtnLeft} ${carouselIndex === 0 ? styles.carouselBtnDisabled : ''}`}
+                onClick={prevSlide}
+                disabled={carouselIndex === 0}
+                aria-label="Previous image"
+              >
+                <FiChevronLeft />
+              </button>
+              <button
+                className={`${styles.carouselBtn} ${styles.carouselBtnRight} ${carouselIndex >= project.dualSlideImages.length - 1 ? styles.carouselBtnDisabled : ''}`}
+                onClick={nextSlide}
+                disabled={carouselIndex >= project.dualSlideImages.length - 1}
+                aria-label="Next image"
+              >
+                <FiChevronRight />
+              </button>
+            </div>
+          ) : project.carouselImages ? (
             <div className={styles.longImageContainer}>
               <div ref={scrollContainerRef} className={styles.longImageWrap}>
                 <img
@@ -306,6 +356,24 @@ function ProjectCard({ project, index }) {
                 <FiExternalLink />
                 <span>View Live</span>
               </a>
+            )}
+            {project.appStoreUrl !== undefined && (
+              project.appStoreUrl ? (
+                <a
+                  href={project.appStoreUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.actionBtn}
+                >
+                  <SiAppstore />
+                  <span>App Store</span>
+                </a>
+              ) : (
+                <span className={`${styles.actionBtn} ${styles.actionBtnDisabled}`}>
+                  <SiAppstore />
+                  <span>App Store</span>
+                </span>
+              )
             )}
             <a
               href={project.github}

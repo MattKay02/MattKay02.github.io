@@ -164,6 +164,39 @@
 }
 
 
+/* Portrait single-image carousel — 1 image at a time, left/right nav, vertical scroll */
+.dualSlideViewport {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: ns-resize;
+  scrollbar-width: none;
+}
+
+.dualSlideViewport::-webkit-scrollbar {
+  display: none;
+}
+
+.dualSlideTrack {
+  display: flex;
+  width: 500%; /* 5 images × 100% of viewport each */
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: flex-start;
+}
+
+.dualSlideImage {
+  width: 20%; /* 20% of track = 100% of viewport */
+  flex-shrink: 0;
+  display: block;
+}
+
+.carouselBtnDisabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /* Dual mobile screenshots — side by side, scrollable */
 .dualScrollWrap {
   width: 100%;
@@ -456,6 +489,12 @@
   color: var(--black);
   border-color: var(--white);
   background: var(--white);
+}
+
+.actionBtnDisabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Responsive */

@@ -14,7 +14,10 @@
       "Bash(gh repo view MattKay02/MGKCodes --json description,readme)",
       "Bash(gh api repos/MattKay02/MGKCodes)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:mgkcodes.com)"
+      "WebFetch(domain:mgkcodes.com)",
+      "Bash(gh repo view MattKay02/Liftio --json description,readme,languages,topics)",
+      "Bash(python3 -c \":*)",
+      "Bash(node -e \":*)"
     ]
   }
 }
