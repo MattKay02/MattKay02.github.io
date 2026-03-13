@@ -18,6 +18,8 @@ import liftio2 from '../assets/projects/Liftio/Screenshot-2.png'
 import liftio3 from '../assets/projects/Liftio/Screenshot-3.png'
 import liftio4 from '../assets/projects/Liftio/Screenshot-4.png'
 import liftio5 from '../assets/projects/Liftio/Screenshot-5.png'
+import netflixLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Screenshot.png'
+import netflixMobileLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Screenshot_Mobile.png'
 
 const projects = [
   {
@@ -71,6 +73,17 @@ const projects = [
     dualMobileImages: [footyScores1, footyScores2],
     tech: ['React Native', 'Expo SDK', 'Node.js', 'Express', 'API-Football', 'Render'],
     status: 'In Development',
+  },
+  {
+    id: 6,
+    category: 'Web App',
+    title: 'Netflix Clone',
+    description:
+      'Frontend Netflix clone built to practice deliberate state architecture — useState for local, React Context for scoped UI, Zustand for persistence, and TanStack Query for all TMDB API data. Every layer has a documented reason.',
+    github: 'https://github.com/MattKay02/Netflix_Clone',
+    longImage: netflixLong,
+    mobileLongImage: netflixMobileLong,
+    tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'React Router', 'TanStack Query', 'Zustand', 'Axios', 'TMDB API'],
   },
   {
     id: 4,
