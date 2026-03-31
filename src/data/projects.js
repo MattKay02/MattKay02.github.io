@@ -19,6 +19,8 @@ import liftioOverview from '../assets/projects/Liftio/Liftio-3-(Overview).png'
 import liftioCharts from '../assets/projects/Liftio/Liftio-4-(Charts).png'
 import liftioExercise from '../assets/projects/Liftio/Liftio-5-(Exercise-Detail).png'
 import liftioHero from '../assets/projects/Liftio/Liftio-6-(Hero).png'
+import youtubeHome from '../assets/projects/Youtube-Clone/Youtube-Clone-1-(Home).png'
+import youtubeWatch from '../assets/projects/Youtube-Clone/Youtube-Clone-2-(Watch).png'
 import netflixLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Screenshot.png'
 import netflixMobileLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Screenshot_Mobile.png'
 
@@ -47,6 +49,17 @@ const projects = [
     liveUrl: 'https://ledger-finance.vercel.app',
     carouselImages: [ledger1, ledger2, ledger3, ledger4, ledger5, ledger6, ledger7],
     tech: ['React', 'Vite', 'Supabase', 'Tailwind CSS', 'Recharts', 'Claude AI', 'Vercel'],
+  },
+  {
+    id: 7,
+    category: 'Web App',
+    title: 'YouTube Clone',
+    description:
+      'Full-stack video-sharing platform replicating the core YouTube experience. Upload videos, browse a thumbnail feed with infinite scroll, watch on a dedicated player page, like and comment, subscribe to channels, and manage your content — all with JWT authentication and a futuristic dark UI.',
+    github: 'https://github.com/MattKay02/Youtube_Clone',
+    liveUrl: null,
+    carouselImages: [youtubeHome, youtubeWatch],
+    tech: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'Prisma', 'SQLite', 'shadcn/ui', 'JWT'],
   },
   {
     id: 2,
