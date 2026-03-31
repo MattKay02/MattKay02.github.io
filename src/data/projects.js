@@ -13,11 +13,12 @@ import redCrossLong from '../assets/projects/RedCross/RedCrossReigate-long-scree
 import redCrossMobileLong from '../assets/projects/RedCross/Mobile-RedCrossReigate-long-screenshot.png'
 import footyScores1 from '../assets/projects/FootyScores/FootyScores-mobile-screenshot-1.png'
 import footyScores2 from '../assets/projects/FootyScores/FootyScores-mobile-screenshot-2.png'
-import liftio1 from '../assets/projects/Liftio/Screenshot-1.png'
-import liftio2 from '../assets/projects/Liftio/Screenshot-2.png'
-import liftio3 from '../assets/projects/Liftio/Screenshot-3.png'
-import liftio4 from '../assets/projects/Liftio/Screenshot-4.png'
-import liftio5 from '../assets/projects/Liftio/Screenshot-5.png'
+import liftioHome from '../assets/projects/Liftio/Liftio-1-(Home).png'
+import liftioTracking from '../assets/projects/Liftio/Liftio-2-(Tracking).png'
+import liftioOverview from '../assets/projects/Liftio/Liftio-3-(Overview).png'
+import liftioCharts from '../assets/projects/Liftio/Liftio-4-(Charts).png'
+import liftioExercise from '../assets/projects/Liftio/Liftio-5-(Exercise-Detail).png'
+import liftioHero from '../assets/projects/Liftio/Liftio-6-(Hero).png'
 import netflixLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Screenshot.png'
 import netflixMobileLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Screenshot_Mobile.png'
 
@@ -28,13 +29,12 @@ const projects = [
     featured: true,
     title: 'Liftio',
     description:
-      'Minimalist offline-first gym tracker for iOS and Android. Log workouts from 330+ exercises, auto-populate weights from previous sessions, and visualise progress — all stored locally via SQLite, no account required.',
-    github: 'https://github.com/MattKay02/Liftio',
+      'iOS gym tracking app built for fast, focused logging. Track 330+ exercises with auto-filled weights, set type tagging, PB detection, and a plate calculator. Visualise progress through charts, 1RM tracking, and a GitHub-style activity heatmap. Includes Apple Sign-In, cloud backup via Supabase, and subscription billing via RevenueCat.',
+    github: null,
     liveUrl: null,
-    appStoreUrl: null,
-    dualSlideImages: [liftio1, liftio2, liftio3, liftio4, liftio5],
-    tech: ['React Native', 'Expo SDK', 'TypeScript', 'Zustand', 'SQLite', 'Reanimated'],
-    status: 'In Development',
+    appStoreUrl: 'https://apps.apple.com/gb/app/liftio/id6759969740',
+    mobileShowcaseImages: [liftioHome, liftioTracking, liftioOverview, liftioCharts, liftioExercise, liftioHero],
+    tech: ['React Native', 'Expo SDK 54', 'TypeScript', 'Expo Router', 'Zustand', 'SQLite', 'Supabase', 'RevenueCat', 'Reanimated'],
   },
   {
     id: 5,

@@ -197,6 +197,33 @@
   pointer-events: none;
 }
 
+/* App Store-style mobile showcase — multiple portrait images visible */
+.mobileShowcaseViewport {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+.mobileShowcaseTrack {
+  display: flex;
+  gap: 10px;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
+  height: 100%;
+}
+
+.mobileShowcaseImage {
+  height: 100%;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+
 /* Dual mobile screenshots — side by side, scrollable */
 .dualScrollWrap {
   width: 100%;

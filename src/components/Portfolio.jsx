@@ -55,9 +55,12 @@ function ProjectCard({ project, index }) {
   const currentScroll = useRef(0)
   const scrollRaf = useRef(null)
   const viewModeRef = useRef('desktop')
+  const showcaseViewportRef = useRef(null)
+  const showcaseTrackRef = useRef(null)
   const [showScrollHint, setShowScrollHint] = useState(true)
   const [viewMode, setViewMode] = useState('desktop') // 'desktop' | 'mobile'
   const [carouselIndex, setCarouselIndex] = useState(0)
+  const [showcaseMeasured, setShowcaseMeasured] = useState(false)
 
   const resetCarouselScroll = () => {
     if (scrollRaf.current) { cancelAnimationFrame(scrollRaf.current); scrollRaf.current = null }
@@ -82,8 +85,38 @@ function ProjectCard({ project, index }) {
     resetCarouselScroll()
   }
 
+  const slideImages = project.dualSlideImages || project.mobileShowcaseImages || []
+
+  // Measure showcase track to compute per-step translate and max index
+  const getShowcaseMetrics = () => {
+    const track = showcaseTrackRef.current
+    const viewport = showcaseViewportRef.current
+    if (!track || !viewport) return null
+    const trackW = track.scrollWidth
+    const viewportW = viewport.clientWidth
+    const images = track.children
+    if (!images.length) return null
+    const imgW = images[0].offsetWidth
+    const gap = images.length > 1 ? images[1].offsetLeft - images[0].offsetLeft - imgW : 0
+    const stepPx = imgW + gap
+    const maxTranslatePx = trackW - viewportW
+    const maxIndex = Math.max(0, Math.ceil(maxTranslatePx / stepPx))
+    return { stepPx, maxTranslatePx, maxIndex }
+  }
+
+  // Re-measure when images load
+  const onShowcaseImageLoad = () => {
+    if (!showcaseMeasured) setShowcaseMeasured(true)
+  }
+
+  const showcaseMetrics = showcaseMeasured ? getShowcaseMetrics() : null
+  const showcaseMaxIndex = showcaseMetrics ? showcaseMetrics.maxIndex : slideImages.length - 1
+  const showcaseTranslateX = showcaseMetrics
+    ? Math.min(carouselIndex * showcaseMetrics.stepPx, showcaseMetrics.maxTranslatePx)
+    : 0
+
   const nextSlide = () => {
-    setCarouselIndex(i => Math.min(project.dualSlideImages.length - 1, i + 1))
+    setCarouselIndex(i => Math.min(showcaseMaxIndex, i + 1))
     resetCarouselScroll()
   }
 
@@ -217,7 +250,43 @@ function ProjectCard({ project, index }) {
         }}
       >
         <div className={styles.imageWrap}>
-          {project.dualSlideImages ? (
+          {project.mobileShowcaseImages ? (
+            <div className={styles.longImageContainer}>
+              <div ref={showcaseViewportRef} className={styles.mobileShowcaseViewport}>
+                <div
+                  ref={showcaseTrackRef}
+                  className={styles.mobileShowcaseTrack}
+                  style={{ transform: `translateX(${-showcaseTranslateX}px)` }}
+                >
+                  {project.mobileShowcaseImages.map((src, i) => (
+                    <img
+                      key={i}
+                      src={src}
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      className={styles.mobileShowcaseImage}
+                      onLoad={onShowcaseImageLoad}
+                    />
+                  ))}
+                </div>
+              </div>
+              <button
+                className={`${styles.carouselBtn} ${styles.carouselBtnLeft} ${carouselIndex === 0 ? styles.carouselBtnDisabled : ''}`}
+                onClick={prevSlide}
+                disabled={carouselIndex === 0}
+                aria-label="Previous image"
+              >
+                <FiChevronLeft />
+              </button>
+              <button
+                className={`${styles.carouselBtn} ${styles.carouselBtnRight} ${carouselIndex >= showcaseMaxIndex ? styles.carouselBtnDisabled : ''}`}
+                onClick={nextSlide}
+                disabled={carouselIndex >= showcaseMaxIndex}
+                aria-label="Next image"
+              >
+                <FiChevronRight />
+              </button>
+            </div>
+          ) : project.dualSlideImages ? (
             <div className={styles.longImageContainer}>
               <div ref={scrollContainerRef} className={styles.dualSlideViewport}>
                 <div
@@ -375,15 +444,17 @@ function ProjectCard({ project, index }) {
                 </span>
               )
             )}
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.actionBtn}
-            >
-              <FiGithub />
-              <span>GitHub</span>
-            </a>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.actionBtn}
+              >
+                <FiGithub />
+                <span>GitHub</span>
+              </a>
+            )}
           </div>
         </div>
         {project.mobileLongImage && (
