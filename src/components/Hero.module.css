@@ -77,6 +77,7 @@
 .socials {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .socials a {
@@ -88,6 +89,24 @@
 .socials a:hover {
   color: var(--white);
   transform: translateY(-2px);
+}
+
+.mgkLogoLink {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.mgkLogoLink:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.mgkLogoImg {
+  height: 22px;
+  width: auto;
+  display: block;
 }
 
 /* Right side - headshot */

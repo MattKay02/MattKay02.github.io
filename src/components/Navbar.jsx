@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
-import mgkLogo from '../assets/MGKCodes/logo-white-elements.svg'
+import { SiX } from 'react-icons/si'
+import MGKIcon from './icons/MGKIcon'
 import styles from './Navbar.module.css'
 
 const links = [
@@ -53,14 +54,17 @@ function Navbar() {
 
         {/* Social icons (top right) */}
         <div className={styles.socials}>
-          <a href="https://mgkcodes.com" target="_blank" rel="noopener noreferrer" className={styles.mgkLogoLink} aria-label="MGKCodes">
-            <img src={mgkLogo} alt="MGKCodes" className={styles.mgkLogoImg} draggable="false" />
+          <a href="https://mgkcodes.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="MGKCodes">
+            <MGKIcon />
           </a>
           <a href="https://github.com/MattKay02" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
             <FiGithub />
           </a>
           <a href="https://linkedin.com/in/matthew-kay-" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
             <FiLinkedin />
+          </a>
+          <a href="https://x.com/mattykay2002" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="X">
+            <SiX />
           </a>
           <a href="mailto:mattykay2002@gmail.com" className={styles.socialIcon} aria-label="Email">
             <FiMail />

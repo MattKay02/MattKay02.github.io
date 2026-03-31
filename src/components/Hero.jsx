@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { SiX } from 'react-icons/si'
+import MGKIcon from './icons/MGKIcon'
 import headshot from '../assets/hero/Professional_headshot.png'
 import useScrollSlide from '../hooks/useScrollSlide'
 import styles from './Hero.module.css'
@@ -88,6 +90,14 @@ function Hero() {
           <div className={styles.socials} style={slideY(200)}>
             {/* <-- Slide distance: 200px down */}
             <a
+              href="https://mgkcodes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="MGKCodes"
+            >
+              <MGKIcon />
+            </a>
+            <a
               href="https://github.com/MattKay02"
               target="_blank"
               rel="noopener noreferrer"
@@ -102,6 +112,14 @@ function Hero() {
               aria-label="LinkedIn"
             >
               <FiLinkedin />
+            </a>
+            <a
+              href="https://x.com/mattykay2002"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X"
+            >
+              <SiX />
             </a>
             <a href="mailto:mattykay2002@gmail.com" aria-label="Email">
               <FiMail />
