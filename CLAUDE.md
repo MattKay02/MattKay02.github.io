@@ -16,7 +16,7 @@ A bold, brutalist personal website for Matthew Kay, a software engineer speciali
 
 ### Brutalist Greyscale Aesthetic
 - **Color Palette**: Exclusively greyscale (blacks, greys, whites) with varying shades for high contrast
-- **Color Source**: Images are the ONLY source of color on the site — no blue, no accent colors anywhere
+- **Color Source**: Images are the only source of color in the site's own UI — no blue, no accent colors anywhere. **One deliberate exception:** the MGKCodes (`#freelance`) section carries MGKCodes' own brand blue (`--mgk-blue`) on its logo wordmark and primary CTA — that's an intentional brand identity, not a greyscale violation.
 - **Typography**: Large, bold, statement fonts used as design elements
 - **Layout**: Asymmetric grids, unconventional positioning, elements breaking traditional alignment
 - **Overlapping**: Text and images intentionally overlap in creative ways
@@ -101,12 +101,13 @@ All sections use a consistent two-line heading style:
 - Links: MGKCODES.COM (primary) + GITHUB (ghost)
 - Background: scrolling text ticker (`MGKCODES`) + scrolling logo ticker
 
-**Heading**: `MGK` / `CODES` — greyscale style matching rest of site (NOT blue)
+**Heading**: `MGK` / `CODES` — greyscale two-line heading, matching the rest of the site (the heading itself is NOT blue)
 
 **Design Notes**:
 - Significant section presence, not overshadowing portfolio
 - Left column: logo link; right column: text + action buttons
 - Section bordered top and bottom with `--mgk-border`
+- **Brand colour exception:** this section runs its own `--mgk-*` token set; `--mgk-blue` (#0074d9) is MGKCodes' brand colour and is intentionally used on the logo wordmark and the primary CTA. The greyscale-only rule applies everywhere else.
 
 ### 5. About Me Section (`#about`)
 **Purpose**: Personal touch — humanise the developer
@@ -158,13 +159,16 @@ All real images are in place (no placeholders remaining for passions):
 ```
 --black:     #0a0a0a
 --dark:      #1a1a1a
---mid:       #333333
---grey:      #666666
+--mid:       #333333   /* hairline borders/dividers — decorative, not text */
+--grey:      #858585   /* muted text — WCAG AA (4.5:1) on --black/--dark */
+--outline:   #666666   /* outline-heading stroke — AA large-text (3:1) */
 --light:     #cccccc
 --off-white: #e8e8e8
 --white:     #f5f5f5
 ```
-No blue or accent colors used anywhere in the UI — greyscale only.
+No blue or accent colors in the UI — greyscale only. (The sole exception is the
+MGKCodes section's brand blue; see section 4.) `--mid` is faint and for non-text
+decoration only — colour text with `--grey` or lighter so it stays AA-legible.
 
 ### Typography
 - **Heading font**: Space Grotesk (bold, 800–900 weight)
@@ -187,7 +191,7 @@ No blue or accent colors used anywhere in the UI — greyscale only.
 ## What to Avoid
 - Traditional, conventional layouts
 - Rounded corners or soft edges
-- Any color accent (blue, brand color, etc.) — greyscale only
+- Any color accent (blue, brand color, etc.) — greyscale only, except the MGKCodes section's documented brand blue (see section 4)
 - Generic templates or Bootstrap-style components
 - Overly flashy animations
 - Symmetrical, balanced layouts

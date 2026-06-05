@@ -23,7 +23,7 @@
 .bigOutline {
   font-size: clamp(5rem, 16vw, 14rem);
   color: transparent;
-  -webkit-text-stroke: 2px var(--mid);
+  -webkit-text-stroke: 2px var(--outline);
   line-height: 0.85;
   margin-left: 3rem;
 }
@@ -69,7 +69,7 @@
 
 .copy {
   font-size: 0.7rem;
-  color: var(--mid);
+  color: var(--grey);
   letter-spacing: 0.05em;
 }
 

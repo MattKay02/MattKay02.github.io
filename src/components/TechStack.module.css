@@ -16,7 +16,7 @@
 .titleOutline {
   font-size: clamp(3rem, 8vw, 7rem);
   color: transparent;
-  -webkit-text-stroke: 2px var(--mid);
+  -webkit-text-stroke: 2px var(--outline);
   margin-top: -0.5rem;
   margin-left: 6rem;
 }
