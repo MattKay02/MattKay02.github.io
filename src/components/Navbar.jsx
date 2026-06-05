@@ -6,6 +6,8 @@ import styles from './Navbar.module.css'
 
 const links = [
   { label: 'PORTFOLIO', href: '#work' },
+  { label: 'OPEN SOURCE', href: '#open-source' },
+  { label: 'SKILLS', href: '#skills' },
   { label: 'STACK', href: '#stack' },
   { label: 'MGKCODES', href: '#freelance' },
   { label: 'ABOUT ME', href: '#about' },
