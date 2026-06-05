@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react'
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import { SiX } from 'react-icons/si'
 import MGKIcon from './icons/MGKIcon'
-import headshot from '../assets/hero/Professional_headshot.png'
 import useScrollSlide from '../hooks/useScrollSlide'
+
+// Served from /public with a stable name so index.html can <link rel="preload">
+// it — it's the LCP element, and preloading lets the browser fetch it before
+// the JS bundle parses.
+const headshot = `${import.meta.env.BASE_URL}Professional_headshot.webp`
 import styles from './Hero.module.css'
 
 /*
@@ -132,7 +136,16 @@ function Hero() {
           {/* <-- Slide distance: 900px right */}
           <div className={styles.headshotWrap}>
             <div className={styles.headshot}>
-              <img src={headshot} alt="Matthew Kay" className={styles.headshotImg} />
+              <img
+                src={headshot}
+                alt="Matthew Kay"
+                className={styles.headshotImg}
+                width="340"
+                height="420"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
             <div className={styles.headshotLabel} aria-hidden="true">
               MK.

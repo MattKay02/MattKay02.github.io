@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import gymImg from '../assets/passions/Gym_image.PNG'
-import golfImg from '../assets/passions/Golf_image.JPG'
-import ps5Img from '../assets/passions/Playstation_image.png'
+import gymImg from '../assets/passions/Gym_image.webp'
+import golfImg from '../assets/passions/Golf_image.webp'
+import ps5Img from '../assets/passions/Playstation_image.webp'
 import styles from './Passions.module.css'
 
 const passions = [
@@ -159,12 +159,12 @@ function Passions() {
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => e.key === 'Enter' && handleCardClick(e, i)}
-                aria-label={`${p.label} — click to ${selectedIdx === i ? 'close' : 'expand'}`}
+                aria-pressed={selectedIdx === i}
               >
-                <img src={p.image} alt={p.label} className={styles.img} />
+                <img src={p.image} alt="" className={styles.img} loading="lazy" decoding="async" />
                 <div className={styles.cardGradient} aria-hidden="true" />
                 <div className={styles.cardContent}>
-                  <span className={styles.cardIndex}>{p.index}</span>
+                  <span className={styles.cardIndex} aria-hidden="true">{p.index}</span>
                   <h3 className={styles.cardLabel}>{p.label}</h3>
                 </div>
               </div>

@@ -10,7 +10,8 @@
   --black: #0a0a0a;
   --dark: #1a1a1a;
   --mid: #333333;
-  --grey: #666666;
+  --grey: #858585;     /* muted text — meets WCAG AA (4.5:1) on --black/--dark */
+  --outline: #666666;  /* outline-heading stroke — meets AA large-text (3:1) */
   --light: #cccccc;
   --off-white: #e8e8e8;
   --white: #f5f5f5;

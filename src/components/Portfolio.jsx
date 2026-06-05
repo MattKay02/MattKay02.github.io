@@ -85,7 +85,7 @@ function ProjectCard({ project, index }) {
     resetCarouselScroll()
   }
 
-  const slideImages = project.dualSlideImages || project.mobileShowcaseImages || []
+  const slideImages = project.mobileShowcaseImages || []
 
   // Projects that ship both a web app and a mobile app get a Desktop/Mobile
   // toggle: desktop shows the web carousel, mobile shows the phone showcase.
@@ -270,6 +270,8 @@ function ProjectCard({ project, index }) {
                       alt={`${project.title} screenshot ${i + 1}`}
                       className={styles.mobileShowcaseImage}
                       onLoad={onShowcaseImageLoad}
+                      loading="lazy"
+                      decoding="async"
                     />
                   ))}
                 </div>
@@ -291,45 +293,6 @@ function ProjectCard({ project, index }) {
                 <FiChevronRight />
               </button>
             </div>
-          ) : project.dualSlideImages ? (
-            <div className={styles.longImageContainer}>
-              <div ref={scrollContainerRef} className={styles.dualSlideViewport}>
-                <div
-                  className={styles.dualSlideTrack}
-                  style={{ transform: `translateX(${-carouselIndex * 20}%)` }}
-                >
-                  {project.dualSlideImages.map((src, i) => (
-                    <img
-                      key={i}
-                      src={src}
-                      alt={`${project.title} screenshot ${i + 1}`}
-                      className={styles.dualSlideImage}
-                    />
-                  ))}
-                </div>
-              </div>
-              {showScrollHint && (
-                <div className={styles.scrollHint}>
-                  <FiChevronsDown />
-                </div>
-              )}
-              <button
-                className={`${styles.carouselBtn} ${styles.carouselBtnLeft} ${carouselIndex === 0 ? styles.carouselBtnDisabled : ''}`}
-                onClick={prevSlide}
-                disabled={carouselIndex === 0}
-                aria-label="Previous image"
-              >
-                <FiChevronLeft />
-              </button>
-              <button
-                className={`${styles.carouselBtn} ${styles.carouselBtnRight} ${carouselIndex >= project.dualSlideImages.length - 1 ? styles.carouselBtnDisabled : ''}`}
-                onClick={nextSlide}
-                disabled={carouselIndex >= project.dualSlideImages.length - 1}
-                aria-label="Next image"
-              >
-                <FiChevronRight />
-              </button>
-            </div>
           ) : project.carouselImages ? (
             <div className={styles.longImageContainer}>
               <div ref={scrollContainerRef} className={styles.longImageWrap}>
@@ -337,6 +300,8 @@ function ProjectCard({ project, index }) {
                   src={project.carouselImages[carouselIndex]}
                   alt={`${project.title} screenshot ${carouselIndex + 1}`}
                   className={styles.longImage}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               {showScrollHint && (
@@ -360,6 +325,8 @@ function ProjectCard({ project, index }) {
                     src={src}
                     alt={`${project.title} screenshot ${i + 1}`}
                     className={styles.dualScrollImage}
+                    loading="lazy"
+                    decoding="async"
                   />
                 ))}
               </div>
@@ -379,6 +346,8 @@ function ProjectCard({ project, index }) {
                   src={viewMode === 'mobile' && project.mobileLongImage ? project.mobileLongImage : project.longImage}
                   alt={project.title}
                   className={viewMode === 'mobile' ? styles.longImageMobile : styles.longImage}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               {showScrollHint && (
@@ -387,16 +356,14 @@ function ProjectCard({ project, index }) {
                 </div>
               )}
             </div>
-          ) : project.image ? (
+          ) : (
             <img
               src={project.image}
               alt={project.title}
               className={styles.image}
+              loading="lazy"
+              decoding="async"
             />
-          ) : (
-            <div className={styles.imagePlaceholder}>
-              <span>PROJECT SCREENSHOT</span>
-            </div>
           )}
         </div>
 

@@ -33,7 +33,7 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 2.5rem;
+  gap: 1.75rem;
 }
 
 /* ── Social icons (right) ── */
@@ -142,8 +142,9 @@
   display: none;
 }
 
-/* ── Mobile ── */
-@media (max-width: 768px) {
+/* ── Mobile / tablet (burger) — raised so the 6 centered links only show
+   inline when there's genuinely room beside the logo + social icons ── */
+@media (max-width: 1100px) {
   .nav {
     padding: 1rem 1.25rem;
   }
