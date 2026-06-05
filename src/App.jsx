@@ -3,6 +3,8 @@ import IntroScreen from './components/IntroScreen'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Portfolio from './components/Portfolio'
+import OpenSource from './components/OpenSource'
+import Skills from './components/Skills'
 import TechStack from './components/TechStack'
 import MGKCodes from './components/MGKCodes'
 import Passions from './components/Passions'
@@ -33,6 +35,12 @@ function App() {
         </section>
         <section id="work">
           <Portfolio />
+        </section>
+        <section id="open-source">
+          <OpenSource />
+        </section>
+        <section id="skills">
+          <Skills />
         </section>
         <section id="stack">
           <TechStack />
