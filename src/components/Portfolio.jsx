@@ -87,6 +87,10 @@ function ProjectCard({ project, index }) {
 
   const slideImages = project.dualSlideImages || project.mobileShowcaseImages || []
 
+  // Projects that ship both a web app and a mobile app get a Desktop/Mobile
+  // toggle: desktop shows the web carousel, mobile shows the phone showcase.
+  const hasWebMobileToggle = Boolean(project.carouselImages && project.mobileShowcaseImages)
+
   // Measure showcase track to compute per-step translate and max index
   const getShowcaseMetrics = () => {
     const track = showcaseTrackRef.current
@@ -124,6 +128,7 @@ function ProjectCard({ project, index }) {
     if (mode === viewMode) return
     setViewMode(mode)
     viewModeRef.current = mode
+    setCarouselIndex(0)
     targetScroll.current = 0
     currentScroll.current = 0
     if (scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0
@@ -179,7 +184,7 @@ function ProjectCard({ project, index }) {
       container.removeEventListener('wheel', onWheel)
       if (scrollRaf.current) cancelAnimationFrame(scrollRaf.current)
     }
-  }, [])
+  }, [viewMode])
 
   const isEven = index % 2 === 1
   const cardDirection = isEven ? 1 : -1
@@ -250,7 +255,7 @@ function ProjectCard({ project, index }) {
         }}
       >
         <div className={styles.imageWrap}>
-          {project.mobileShowcaseImages ? (
+          {project.mobileShowcaseImages && (!project.carouselImages || viewMode === 'mobile') ? (
             <div className={styles.longImageContainer}>
               <div ref={showcaseViewportRef} className={styles.mobileShowcaseViewport}>
                 <div
@@ -457,7 +462,7 @@ function ProjectCard({ project, index }) {
             )}
           </div>
         </div>
-        {project.mobileLongImage && (
+        {(project.mobileLongImage || hasWebMobileToggle) && (
           <div className={`${styles.viewToggles} ${isEven ? styles.viewTogglesLeft : ''}`}>
             <button
               className={`${styles.viewToggleBtn} ${viewMode === 'desktop' ? styles.viewToggleActive : ''}`}

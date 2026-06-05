@@ -1,3 +1,16 @@
+import frunt1 from '../assets/projects/Frunt/Frunt-1-(Landing).png'
+import frunt2 from '../assets/projects/Frunt/Frunt-2-(Home).png'
+import frunt3 from '../assets/projects/Frunt/Frunt-3-(Ask-Frunt).png'
+import frunt4 from '../assets/projects/Frunt/Frunt-4-(Team).png'
+import frunt5 from '../assets/projects/Frunt/Frunt-5-(Rota).png'
+import frunt6 from '../assets/projects/Frunt/Frunt-6-(Documents).png'
+import frunt7 from '../assets/projects/Frunt/Frunt-7-(Training).png'
+import fruntM1 from '../assets/projects/Frunt/mobile/Frunt-Mobile-1-(Home).png'
+import fruntM2 from '../assets/projects/Frunt/mobile/Frunt-Mobile-2-(Ask).png'
+import fruntM3 from '../assets/projects/Frunt/mobile/Frunt-Mobile-3-(Schedule).png'
+import fruntM4 from '../assets/projects/Frunt/mobile/Frunt-Mobile-4-(Library).png'
+import fruntM5 from '../assets/projects/Frunt/mobile/Frunt-Mobile-5-(Training).png'
+import fruntM6 from '../assets/projects/Frunt/mobile/Frunt-Mobile-6-(Updates).png'
 import ledger1 from '../assets/projects/Ledger/Ledger-1-(Overview).png'
 import ledger2 from '../assets/projects/Ledger/Ledger-2-(Ledger-bot).png'
 import ledger3 from '../assets/projects/Ledger/Ledger-3-(Expenses).png'
@@ -25,6 +38,19 @@ import netflixLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Scr
 import netflixMobileLong from '../assets/projects/Netflix-Clone/Netflix-Clone-Long-Screenshot_Mobile.png'
 
 const projects = [
+  {
+    id: 8,
+    category: 'Web App',
+    featured: true,
+    title: 'Frunt',
+    description:
+      "Live, multi-tenant SaaS that turns a restaurant's own compliance documents into staff training, onboarding, and instant sourced answers. Managers upload their SOPs and policies; frunt extracts and classifies each one, auto-builds the statutory courses, runs the rota with natural-language editing, and powers an 'Ask frunt' assistant that answers grounded strictly in that restaurant's own documents — every answer cited. Built across two separate repositories: a Next.js web app (the manager dashboard + the API, with the ingestion pipeline, RAG retrieval over pgvector, background jobs and Stripe billing) and a Flutter staff app — a pure client to that API, shipped to the App Store and Google Play — that staff use to read docs, attest, take training and get the same sourced answers.",
+    github: null,
+    liveUrl: 'https://frunthospitality.com',
+    carouselImages: [frunt1, frunt2, frunt3, frunt4, frunt5, frunt6, frunt7],
+    mobileShowcaseImages: [fruntM1, fruntM2, fruntM3, fruntM4, fruntM5, fruntM6],
+    tech: ['Next.js 15', 'TypeScript', 'Supabase', 'pgvector', 'Claude AI', 'OpenAI Embeddings', 'Inngest', 'Stripe', 'Tailwind CSS', 'Flutter', 'Dart', 'Riverpod', 'Firebase', 'Vercel'],
+  },
   {
     id: 1,
     category: 'Mobile App',
