@@ -2,3 +2,6 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# Local Claude Code settings — personal, machine-specific permission grants
+.claude/settings.local.json
